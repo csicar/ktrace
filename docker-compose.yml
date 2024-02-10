@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      # https://www.jaegertracing.io/docs/1.47/deployment/
+      - "4318:16686"
+      - "4319:4317"
