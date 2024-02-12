@@ -1,3 +1,4 @@
+import java.net.URI
 
 repositories {
     mavenCentral()
@@ -7,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.9.21"
 
     id("com.squareup.wire") version "4.9.6"
+    id("maven-publish")
 }
 
 group = "de.csicar"
@@ -39,11 +41,25 @@ wire {
     kotlin {
         rpcRole = "client"
         rpcCallStyle = "suspending"
+        javaInterop = true
     }
 }
 
 buildscript {
     dependencies {
         classpath("com.squareup.wire:wire-gradle-plugin")
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = URI("https://maven.pkg.github.com/octocat/hello-world")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
