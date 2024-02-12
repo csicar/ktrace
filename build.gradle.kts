@@ -15,6 +15,8 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("com.github.ajalt.mordant:mordant:2.2.0")
     api("com.squareup.wire:wire-runtime:4.9.6")
     api("com.squareup.wire:wire-grpc-client:4.9.6")
 }
