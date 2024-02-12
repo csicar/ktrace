@@ -8,7 +8,9 @@ plugins {
     kotlin("jvm") version "1.9.21"
 
     id("com.squareup.wire") version "4.9.6"
-    id("maven-publish")
+
+    `maven-publish`
+    `java-library`
 }
 
 group = "de.csicar"
@@ -52,10 +54,15 @@ buildscript {
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("ktrace") {
+            from(components["java"])
+        }
+    }
     repositories {
         maven {
             name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/csicar/ktrace")
+            url = uri("https://maven.pkg.github.com/csicar/ktrace")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
