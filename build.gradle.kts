@@ -31,6 +31,9 @@ tasks.test {
 
 kotlin {
     jvmToolchain(17)
+    sourceSets.main {
+        kotlin.srcDir("build/generated/source/wire")
+    }
 }
 
 
