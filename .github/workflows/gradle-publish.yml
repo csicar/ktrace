@@ -35,15 +35,9 @@ jobs:
         id: release
         run: echo "::set-output name=tag::${{ startsWith(github.ref, 'refs/tags/') }}"
       - name: Publish package
-        run: |
-          if [[ "${{ steps.release.outputs.tag }}" == "true" ]]; then
-            # Publish versioned package
-            echo "Publishing versioned package..."
-            gradle publish
-          else
-            # Publish SNAPSHOT package
-            echo "Publishing SNAPSHOT package..."
-            gradle publish --snapshot
-          fi
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/tags/latest' }}

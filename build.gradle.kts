@@ -68,6 +68,7 @@ publishing {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/csicar/ktrace")
+            version = System.getenv("VERSION") ?: "${version}-SNAPSHOT"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
