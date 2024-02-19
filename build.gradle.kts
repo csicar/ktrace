@@ -19,6 +19,9 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.5")
+    testImplementation("io.mockk:mockk:1.13.9")
+    testImplementation("io.strikt:strikt-core:0.34.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("com.github.ajalt.mordant:mordant:2.2.0")
     api("com.squareup.wire:wire-runtime:4.9.6")
@@ -46,7 +49,6 @@ wire {
     kotlin {
         rpcRole = "client"
         rpcCallStyle = "suspending"
-        javaInterop = true
     }
 }
 
